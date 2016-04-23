@@ -1,0 +1,20 @@
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+
+# Intellij project files
+*.iml
+*.pro
+
+# files for buile
+/build
+
+# signing files
+release.keystore
