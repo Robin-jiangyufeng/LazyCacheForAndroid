@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 
 android {
     compileSdkVersion 23
@@ -9,6 +11,10 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0.0"
+    }
+
+    lintOptions {
+        abortOnError false
     }
 
     buildTypes {
