@@ -23,7 +23,7 @@
    * Gradle: 
      ````compile 'com.robin.lazy.cache:CacheLibrary:1.0.0'````
    * Maven:
-     ````java
+     ````
        <dependency>
           <groupId>com.robin.lazy.cache</groupId>
           <artifactId>CacheLibrary</artifactId>
