@@ -2,7 +2,8 @@
 -----------------------------------
 #  项目介绍
 ### 项目地址
-  * [LazyCacheForAndroid](https://github.com/Robin-jiangyufeng/LazyCacheForAndroid) 
+  * [LazyCacheForAndroid](https://github.com/Robin-jiangyufeng/LazyCacheForAndroid)
+
 ### 介绍:
   * 这是一个android上的数据缓存框架,具有缓存和加载数据速度快,缓存数据类型全,能够实现任意缓存时间等优点
 
@@ -19,13 +20,16 @@
 
 #   使用方法
 ### 库引入方式
-   * Gradle: `compile 'com.robin.lazy.cache:CacheLibrary:1.0.0'`
-   * Maven: `<dependency>
-              <groupId>com.robin.lazy.cache</groupId>
-              <artifactId>CacheLibrary</artifactId>
-              <version>1.0.0</version>
-              <type>pom</type>
-            </dependency>`
+   * Gradle: 
+   ````compile 'com.robin.lazy.cache:CacheLibrary:1.0.0'````
+   * Maven:
+    ````<dependency>
+          <groupId>com.robin.lazy.cache</groupId>
+          <artifactId>CacheLibrary</artifactId>
+          <version>1.0.0</version>
+          <type>pom</type>
+        </dependency>````
+        
 ### 初始化
    * 想要直接使用CacheLoaderManager进行数据储存的话,请先进行初始化,初始化方式如下:
 ```java
