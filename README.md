@@ -1,6 +1,8 @@
         LazyCacheForAndroid
 -----------------------------------
 #  项目介绍
+### 项目地址
+  * [LazyCacheForAndroid](https://github.com/Robin-jiangyufeng/LazyCacheForAndroid) 
 ### 介绍:
   * 这是一个android上的数据缓存框架,具有缓存和加载数据速度快,缓存数据类型全,能够实现任意缓存时间等优点
 
@@ -66,5 +68,6 @@ CacheLoaderManager.getInstance().loadString(String key);
    
 # 关于作者Robin
 * 屌丝程序员
-* 429257411
+* GitHub: [Robin-jiangyufeng](https://github.com/Robin-jiangyufeng)
+* QQ:429257411
 * 交流QQ群 236395044
