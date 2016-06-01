@@ -23,12 +23,14 @@
    * Gradle: 
    ````compile 'com.robin.lazy.cache:CacheLibrary:1.0.0'````
    * Maven:
-    ````<dependency>
+    ````Maven
+    <dependency>
           <groupId>com.robin.lazy.cache</groupId>
           <artifactId>CacheLibrary</artifactId>
           <version>1.0.0</version>
           <type>pom</type>
-        </dependency>````
+        </dependency>
+     ````
         
 ### 初始化
    * 想要直接使用CacheLoaderManager进行数据储存的话,请先进行初始化,初始化方式如下:
