@@ -61,3 +61,10 @@ CacheLoaderManager.getInstance().saveString(String key,String value,long maxLimi
      */
 CacheLoaderManager.getInstance().loadString(String key);
 ```
+### 其它
+   * 上面介绍的是很小的一部分已经实现的功能,其中有还有很多功能可以高度定制,扩展性很强,更多功能待你发现;
+   
+# 关于作者Robin
+* 屌丝程序员
+* 429257411
+* 交流QQ群 236395044
