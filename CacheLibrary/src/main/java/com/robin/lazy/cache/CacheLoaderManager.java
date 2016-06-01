@@ -14,11 +14,6 @@ package com.robin.lazy.cache;
 import android.content.Context;
 import android.graphics.Bitmap;
 
-import com.robin.lazy.logger.LazyLogger;
-
-import java.io.InputStream;
-import java.io.Serializable;
-
 import com.robin.lazy.cache.disk.naming.FileNameGenerator;
 import com.robin.lazy.cache.disk.read.BitmapReadFromDisk;
 import com.robin.lazy.cache.disk.read.BytesReadFromDisk;
@@ -33,7 +28,11 @@ import com.robin.lazy.cache.entity.CacheGetEntity;
 import com.robin.lazy.cache.entity.CachePutEntity;
 import com.robin.lazy.cache.memory.MemoryCache;
 import com.robin.lazy.cache.util.MemoryCacheUtils;
+import com.robin.lazy.logger.LazyLogger;
 import com.robin.lazy.util.bitmap.ImageDecodingInfo;
+
+import java.io.InputStream;
+import java.io.Serializable;
 
 /**
  * 缓存加载管理者
@@ -146,7 +145,7 @@ public class CacheLoaderManager {
     /**
      * 加载String
      * @param key
-     * @return
+     * @return 等到缓存数据
      * String
      * @throws
      * @see [类、类#方法、类#成员]
@@ -191,7 +190,7 @@ public class CacheLoaderManager {
 	}
 	
 	/**
-	 * push bytes到缓存
+	 * save bytes到缓存
 	 * @param key 
 	 * @param value
 	 * @param maxLimitTime 缓存期限(单位分钟)
@@ -200,7 +199,7 @@ public class CacheLoaderManager {
 	 * @throws
 	 * @see [类、类#方法、类#成员]
 	 */
-	public boolean pushBytes(String key,byte[] value,long maxLimitTime){
+	public boolean saveBytes(String key,byte[] value,long maxLimitTime){
 		if(!isInitialize())
 			return false;
 		CachePutEntity<byte[]> cachePutEntity=new CachePutEntity<byte[]>(new BytesWriteInDisk());
@@ -208,7 +207,7 @@ public class CacheLoaderManager {
 	}
 	
 	/**
-	 * push Bitmap到缓存
+	 * save Bitmap到缓存
 	 * @param key 
 	 * @param value 
 	 * @param maxLimitTime 缓存期限(单位分钟)
@@ -218,7 +217,7 @@ public class CacheLoaderManager {
 	 * @throws
 	 * @see [类、类#方法、类#成员]
 	 */
-	public boolean pushBitmap(String key,Bitmap value,long maxLimitTime,boolean isRecycle){
+	public boolean saveBitmap(String key,Bitmap value,long maxLimitTime,boolean isRecycle){
 		if(!isInitialize())
 			return false;
 		CachePutEntity<Bitmap> cachePutEntity=new CachePutEntity<Bitmap>(new BitmapWriteInDisk(isRecycle));
@@ -226,16 +225,16 @@ public class CacheLoaderManager {
 	}
 	
 	/**
-	 * push String到缓存
+	 * save String到缓存
 	 * @param key 
-	 * @param value 
+	 * @param value 要缓存的值
 	 * @param maxLimitTime 缓存期限(单位分钟)
-	 * @return
+	 * @return 是否保存成功
 	 * boolean
 	 * @throws
 	 * @see [类、类#方法、类#成员]
 	 */
-	public boolean pushString(String key,String value,long maxLimitTime){
+	public boolean saveString(String key,String value,long maxLimitTime){
 		if(!isInitialize())
 			return false;
 		CachePutEntity<String> cachePutEntity=new CachePutEntity<String>(new StringWriteInDisk());
@@ -243,7 +242,7 @@ public class CacheLoaderManager {
 	}
 	
 	/**
-	 * push Serializable到缓存
+	 * save Serializable到缓存
 	 * @param <V>
 	 * @param key 
 	 * @param values 
@@ -253,7 +252,7 @@ public class CacheLoaderManager {
 	 * @throws
 	 * @see [类、类#方法、类#成员]
 	 */
-	public <V extends Serializable> boolean pushSerializable(String key,V values,long maxLimitTime){
+	public <V extends Serializable> boolean saveSerializable(String key,V values,long maxLimitTime){
 		if(!isInitialize())
 			return false;
 		CachePutEntity<V> cachePutEntity=new CachePutEntity<V>(new SerializableWriteInDisk<V>());

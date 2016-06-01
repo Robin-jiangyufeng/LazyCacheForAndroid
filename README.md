@@ -30,11 +30,34 @@
 	 * @throws
 	 * @see [类、类#方法、类#成员]
 	 */
-CacheLoaderManager.getInstance().init(context, new HashCodeFileNameGenerator(), 1024 * 1024 * 8, 50, 20);
+CacheLoaderManager.getInstance().init(Context context,FileNameGenerator diskCacheFileNameGenerator, long diskCacheSize,
+                                      			int diskCacheFileCount, int maxMemorySize);
 ```
-### 存储数据代码
+### 缓存数据
    * 以下代码只列举了储存String类型的数据,其它数据类型储存类似,具体请阅读 CacheLoaderManager.java
 ```java
-CacheLoaderManager.getInstance().loadString(key);
+   /**
+	 * save String到缓存
+	 * @param key 
+	 * @param value 要缓存的值
+	 * @param maxLimitTime 缓存期限(单位分钟)
+	 * @return 是否保存成功
+	 * boolean
+	 * @throws
+	 * @see [类、类#方法、类#成员]
+	 */
+CacheLoaderManager.getInstance().saveString(String key,String value,long maxLimitTime);
 ```
-   
+### 加载缓存数据
+   * 以下代码只列举了加载String类型的数据方法,其它数据加载类似,具体请阅读 CacheLoaderManager.java
+```java
+   /**
+     * 加载String
+     * @param key
+     * @return 等到缓存数据
+     * String
+     * @throws
+     * @see [类、类#方法、类#成员]
+     */
+CacheLoaderManager.getInstance().loadString(String key);
+```
