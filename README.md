@@ -19,10 +19,11 @@
 ## 初始化
    * 想要直接使用CacheLoaderManager进行数据储存的话,请先进行初始化,初始化方式如下:
 ```java
-        CacheLoaderManager.getInstance().init(context, new HashCodeFileNameGenerator(), 1024 * 1024 * 8, 50, 20);
-        
+CacheLoaderManager.getInstance().init(context, new HashCodeFileNameGenerator(), 1024 * 1024 * 8, 50, 20);
+```
 ## 存储数据代码
    * 以下代码只列举了储存String类型的数据,其它数据类型储存类似,具体请阅读 CacheLoaderManager.java
 ```java
-    CacheLoaderManager.getInstance().loadString(key);
+CacheLoaderManager.getInstance().loadString(key);
+```
    
