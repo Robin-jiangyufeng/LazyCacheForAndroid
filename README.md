@@ -31,7 +31,14 @@
           <type>pom</type>
         </dependency>
       ````
-        
+  
+### 所需权限
+```java
+   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+   <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+```
+
 ### 初始化
    * 想要直接使用CacheLoaderManager进行数据储存的话,请先进行初始化,初始化方式如下:
 ```java
