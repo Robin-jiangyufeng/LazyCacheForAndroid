@@ -1,0 +1,132 @@
+{
+  "province": [
+    {
+      "areaid": "100000",
+      "areaname": "全国"
+    },
+    {
+      "areaid": "110000",
+      "areaname": "北京市"
+    },
+    {
+      "areaid": "120000",
+      "areaname": "天津市"
+    },
+    {
+      "areaid": "130000",
+      "areaname": "河北省"
+    },
+    {
+      "areaid": "140000",
+      "areaname": "山西省"
+    },
+    {
+      "areaid": "150000",
+      "areaname": "内蒙古自治区"
+    },
+    {
+      "areaid": "210000",
+      "areaname": "辽宁省"
+    },
+    {
+      "areaid": "220000",
+      "areaname": "吉林省"
+    },
+    {
+      "areaid": "230000",
+      "areaname": "黑龙江省"
+    },
+    {
+      "areaid": "310000",
+      "areaname": "上海市"
+    },
+    {
+      "areaid": "320000",
+      "areaname": "江苏省"
+    },
+    {
+      "areaid": "330000",
+      "areaname": "浙江省"
+    },
+    {
+      "areaid": "340000",
+      "areaname": "安徽省"
+    },
+    {
+      "areaid": "350000",
+      "areaname": "福建省"
+    },
+    {
+      "areaid": "360000",
+      "areaname": "江西省"
+    },
+    {
+      "areaid": "370000",
+      "areaname": "山东省"
+    },
+    {
+      "areaid": "410000",
+      "areaname": "河南省"
+    },
+    {
+      "areaid": "420000",
+      "areaname": "湖北省"
+    },
+    {
+      "areaid": "430000",
+      "areaname": "湖南省"
+    },
+    {
+      "areaid": "440000",
+      "areaname": "广东省"
+    },
+    {
+      "areaid": "450000",
+      "areaname": "广西壮族自治区"
+    },
+    {
+      "areaid": "460000",
+      "areaname": "海南省"
+    },
+    {
+      "areaid": "500000",
+      "areaname": "重庆市"
+    },
+    {
+      "areaid": "510000",
+      "areaname": "四川省"
+    },
+    {
+      "areaid": "520000",
+      "areaname": "贵州省"
+    },
+    {
+      "areaid": "530000",
+      "areaname": "云南省"
+    },
+    {
+      "areaid": "540000",
+      "areaname": "西藏自治区"
+    },
+    {
+      "areaid": "610000",
+      "areaname": "陕西省"
+    },
+    {
+      "areaid": "620000",
+      "areaname": "甘肃省"
+    },
+    {
+      "areaid": "630000",
+      "areaname": "青海省"
+    },
+    {
+      "areaid": "640000",
+      "areaname": "宁夏回族自治区"
+    },
+    {
+      "areaid": "650000",
+      "areaname": "新疆维吾尔自治区"
+    }
+  ]
+}
