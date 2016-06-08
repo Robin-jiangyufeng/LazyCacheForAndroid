@@ -26,6 +26,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.buttonSave) {
+            //把数据存入缓存需要操作io流,有对io的操作都是比较耗时的,最好都在子线程完成.
+            //android 理想的fps是大于等于60(16s/帧),这种情况应用操作起来才会感觉不到卡顿
+            //尽管测出来存储缓存数据使用的时间在6s左右,但是为了性能考虑,最好在子线程中操作
             new Thread(new Runnable() {
                 @Override
                 public void run() {
