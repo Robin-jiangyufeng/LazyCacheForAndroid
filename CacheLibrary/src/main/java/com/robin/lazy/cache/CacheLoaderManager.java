@@ -22,6 +22,7 @@ import com.robin.lazy.cache.disk.read.SerializableReadFromDisk;
 import com.robin.lazy.cache.disk.read.StringReadFromDisk;
 import com.robin.lazy.cache.disk.write.BitmapWriteInDisk;
 import com.robin.lazy.cache.disk.write.BytesWriteInDisk;
+import com.robin.lazy.cache.disk.write.InputStreamWriteInDisk;
 import com.robin.lazy.cache.disk.write.SerializableWriteInDisk;
 import com.robin.lazy.cache.disk.write.StringWriteInDisk;
 import com.robin.lazy.cache.entity.CacheGetEntity;
@@ -29,6 +30,7 @@ import com.robin.lazy.cache.entity.CachePutEntity;
 import com.robin.lazy.cache.memory.MemoryCache;
 import com.robin.lazy.cache.util.MemoryCacheUtils;
 import com.robin.lazy.logger.LazyLogger;
+import com.robin.lazy.util.IoUtils;
 import com.robin.lazy.util.bitmap.ImageDecodingInfo;
 
 import java.io.InputStream;
@@ -36,7 +38,7 @@ import java.io.Serializable;
 
 /**
  * 缓存加载管理者
- * 
+ *
  * @author jiangyufeng
  * @version [版本号, 2015年12月15日]
  * @see [相关类/方法]
@@ -47,7 +49,7 @@ public class CacheLoaderManager {
 	private volatile static CacheLoaderManager instance;
 
 	private CacheLoaderConfiguration cacheLoaderConfiguration;
-	
+
 	/** 基础的缓存加载任务 */
 	private LoadCacheTask cacheTask;
 
@@ -69,7 +71,7 @@ public class CacheLoaderManager {
 
 	/***
 	 * 初始化缓存的一些配置
-	 * 
+	 *
 	 * @param diskCacheFileNameGenerator
 	 * @param diskCacheSize 磁盘缓存大小
 	 * @param diskCacheFileCount 磁盘缓存文件的最大限度
@@ -95,7 +97,7 @@ public class CacheLoaderManager {
 
 	/**
 	 * 初始化缓存配置
-	 * 
+	 *
 	 * @param cacheLoaderConfiguration
 	 * @return CacheLoaderConfiguration
 	 * @throws
@@ -111,7 +113,7 @@ public class CacheLoaderManager {
 				cacheLoaderConfiguration.getLimitAgeDiskCache(),
 				cacheLoaderConfiguration.getLimitedAgeMemoryCache());
 	}
-	
+
 	/***
 	 * 加载缓存中对应的字节数组
 	 * @param key
@@ -126,7 +128,7 @@ public class CacheLoaderManager {
 		CacheGetEntity<byte[]> cacheGetEntity=new CacheGetEntity<byte[]>(new BytesReadFromDisk());
 		return cacheTask.query(key, cacheGetEntity);
 	}
-	
+
 	/**
 	 * 加载Bitmap
 	 * @param key
@@ -172,7 +174,7 @@ public class CacheLoaderManager {
 				new SerializableReadFromDisk<V>());
 		return cacheTask.query(key, cacheGetEntity);
 	}
-	
+
 	/**
 	 * 加载InputStream
 	 * @param key
@@ -188,10 +190,10 @@ public class CacheLoaderManager {
 				new InputStreamReadFormDisk());
 		return cacheTask.query(key, cacheGetEntity);
 	}
-	
+
 	/**
 	 * save bytes到缓存
-	 * @param key 
+	 * @param key
 	 * @param value
 	 * @param maxLimitTime 缓存期限(单位分钟)
 	 * @return
@@ -205,11 +207,11 @@ public class CacheLoaderManager {
 		CachePutEntity<byte[]> cachePutEntity=new CachePutEntity<byte[]>(new BytesWriteInDisk());
 		return cacheTask.insert(key, cachePutEntity, value, maxLimitTime * 60);
 	}
-	
+
 	/**
 	 * save Bitmap到缓存
-	 * @param key 
-	 * @param value 
+	 * @param key
+	 * @param value
 	 * @param maxLimitTime 缓存期限(单位分钟)
 	 * @param isRecycle 使用玩是否释放回收
 	 * @return
@@ -223,10 +225,10 @@ public class CacheLoaderManager {
 		CachePutEntity<Bitmap> cachePutEntity=new CachePutEntity<Bitmap>(new BitmapWriteInDisk(isRecycle));
 		return cacheTask.insert(key, cachePutEntity, value, maxLimitTime * 60);
 	}
-	
+
 	/**
 	 * save String到缓存
-	 * @param key 
+	 * @param key
 	 * @param value 要缓存的值
 	 * @param maxLimitTime 缓存期限(单位分钟)
 	 * @return 是否保存成功
@@ -240,12 +242,12 @@ public class CacheLoaderManager {
 		CachePutEntity<String> cachePutEntity=new CachePutEntity<String>(new StringWriteInDisk());
 		return cacheTask.insert(key, cachePutEntity, value, maxLimitTime * 60);
 	}
-	
+
 	/**
 	 * save Serializable到缓存
 	 * @param <V>
-	 * @param key 
-	 * @param values 
+	 * @param key
+	 * @param values
 	 * @param maxLimitTime 缓存期限(单位分钟)
 	 * @return
 	 * boolean
@@ -258,10 +260,26 @@ public class CacheLoaderManager {
 		CachePutEntity<V> cachePutEntity=new CachePutEntity<V>(new SerializableWriteInDisk<V>());
 		return cacheTask.insert(key, cachePutEntity, values, maxLimitTime * 60);
 	}
-	
+
+    /**
+     * save inputStream到缓存
+     * @param key
+     * @param values
+     * @param listener 进度监听器
+     * @param maxLimitTime 缓存期限(单位分钟)
+     * @return
+     */
+	public boolean saveInputStream(String key,InputStream values,IoUtils.CopyListener listener,long maxLimitTime){
+		if(!isInitialize())
+			return false;
+		CachePutEntity<InputStream> cachePutEntity=new CachePutEntity<InputStream>(
+                new InputStreamWriteInDisk(listener));
+		return cacheTask.insert(key, cachePutEntity, values, maxLimitTime * 60);
+	}
+
 	/***
 	 * 删除一条缓存数据
-	 * 
+	 *
 	 * @param key 数据标识
 	 * @return 是否删除成功 boolean
 	 * @throws
@@ -272,7 +290,7 @@ public class CacheLoaderManager {
 			return false;
 		return cacheTask.delete(key);
 	}
-	
+
 	/**
 	 * 获取缓存大小
 	 * @return
@@ -285,7 +303,7 @@ public class CacheLoaderManager {
 			return 0;
 		return cacheTask.size();
 	}
-	
+
 	/**
 	 * 是否初始化
 	 * @return
@@ -300,10 +318,10 @@ public class CacheLoaderManager {
 		}
 		return true;
 	}
-	
+
 	/***
 	 * 清理掉当前缓存,可以继续使用
-	 * 
+	 *
 	 * @throws
 	 * @see [类、类#方法、类#成员]
 	 */
@@ -312,7 +330,7 @@ public class CacheLoaderManager {
 			cacheTask.clear();
 		}
 	}
-	
+
 	/**
 	 * 关闭缓存,关闭后将不能再使用缓存了
 	 * void

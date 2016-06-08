@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         public void run() {
                             String area_strs = FileUtil.readAssets(MainActivity.this, "province.json");
                             lastTime = System.currentTimeMillis();
-                            CacheLoaderManager.getInstance().pushString("area_strs", area_strs, 5);
+                            CacheLoaderManager.getInstance().saveString("area_strs", area_strs, 5);
                             textView.setText("保存数据用时:"+(System.currentTimeMillis() - lastTime) + "毫秒");
                         }
                     });

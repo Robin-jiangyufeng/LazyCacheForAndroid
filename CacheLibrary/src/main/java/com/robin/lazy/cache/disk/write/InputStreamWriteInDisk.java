@@ -70,9 +70,4 @@ public class InputStreamWriteInDisk extends WriteInDisk<InputStream> {
 		this.bufferSize = bufferSize;
 	}
 
-	public void setListener(IoUtils.CopyListener listener) {
-		this.mListener = listener;
-	}
-	
-	
 }
