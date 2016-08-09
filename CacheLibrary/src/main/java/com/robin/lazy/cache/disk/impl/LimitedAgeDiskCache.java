@@ -85,6 +85,7 @@ public class LimitedAgeDiskCache implements DiskCache {
 
             if (loadingDate.checkExpire()) {
                 loadingDates.remove(file);
+                limitedAgePropertiesConfig.remove(key);
                 mDiskCache.remove(key);
                 file.delete();
             } else if (!cached) {
@@ -144,6 +145,7 @@ public class LimitedAgeDiskCache implements DiskCache {
             return false;
         }
         loadingDates.remove(getFile(key));
+        limitedAgePropertiesConfig.remove(key);
         return mDiskCache.remove(key);
     }
 

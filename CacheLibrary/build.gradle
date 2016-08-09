@@ -9,8 +9,8 @@ android {
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 23
-        versionCode 103
-        versionName "1.0.3"
+        versionCode 105
+        versionName "1.0.5"
     }
 
     lintOptions {
@@ -45,7 +45,7 @@ ext {
     siteUrl = 'https://github.com/Robin-jiangyufeng/LazyCacheForAndroid'
     gitUrl = 'https://github.com/Robin-jiangyufeng/LazyCacheForAndroid.git'
 
-    libraryVersion = '1.0.3'
+    libraryVersion = '1.0.5'
 
     developerId = 'jiangyufeng'
     developerName = 'jiangyufeng'

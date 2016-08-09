@@ -56,8 +56,8 @@ public class LimitedAgePropertiesConfig {
      */
     public long getLong(String key, long defaultVales) {
         try {
-            return Long.getLong(getString(key, String.valueOf(defaultVales)));
-        } catch (Exception e) {
+            return Long.parseLong(getString(key, String.valueOf(defaultVales)));
+        } catch (NumberFormatException e) {
             e.printStackTrace();
         }
         return defaultVales;
