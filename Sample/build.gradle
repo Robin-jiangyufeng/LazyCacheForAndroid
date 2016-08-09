@@ -35,7 +35,6 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.robin.lazy.cache:CacheLibrary:1.0.1'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:multidex:'
     //ADD THESE LINES:
@@ -43,4 +42,6 @@ dependencies {
     androidTestCompile 'com.android.support.test:runner:0.5+'
     androidTestCompile 'com.android.support.test:rules:0.5+'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2+'
+    compile 'in.srain.cube:ultra-ptr:1.0.11'
+    compile project(':CacheLibrary')
 }

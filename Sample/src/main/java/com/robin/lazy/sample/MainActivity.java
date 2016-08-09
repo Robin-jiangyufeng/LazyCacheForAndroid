@@ -8,18 +8,64 @@ import android.widget.Toast;
 
 import com.robin.lazy.cache.CacheLoaderManager;
 
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
+import in.srain.cube.views.ptr.header.StoreHouseHeader;
+import in.srain.cube.views.ptr.util.PtrLocalDisplay;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private long lastTime;
     private TextView textView;
+    private PtrFrameLayout mPtrFrame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        View view= View.inflate(this,R.layout.activity_main,null);
+        setContentView(view);
         findViewById(R.id.buttonSave).setOnClickListener(this);
         findViewById(R.id.buttonLoad).setOnClickListener(this);
         textView=(TextView)findViewById(R.id.textView);
+        mPtrFrame=(PtrFrameLayout)view;
+        // the following are default settings
+        mPtrFrame.setResistance(1.7f);
+        mPtrFrame.setRatioOfHeaderHeightToRefresh(1.2f);
+        mPtrFrame.setDurationToClose(200);
+        mPtrFrame.setDurationToCloseHeader(1000);
+// default is false
+        mPtrFrame.setPullToRefresh(false);
+// default is true
+        mPtrFrame.setKeepHeaderWhenRefresh(true);
+        // header
+        final StoreHouseHeader header = new StoreHouseHeader(this);
+        header.setPadding(0, PtrLocalDisplay.dp2px(15), 0, 0);
+
+/**
+ * using a string, support: A-Z 0-9 - .
+ * you can add more letters by {@link in.srain.cube.views.ptr.header.StoreHousePath#addChar}
+ */
+        header.initWithString("Alibaba");
+        mPtrFrame.setHeaderView(header);
+        mPtrFrame.setPtrHandler(new PtrHandler() {
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                frame.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mPtrFrame.refreshComplete();
+                    }
+                }, 1800);
+            }
+
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                // 默认实现，根据实际情况做改动
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+            }
+        });
+
     }
 
     @Override

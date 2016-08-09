@@ -28,7 +28,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:support-v4:23.2.1'
-    compile 'com.robin.lazy.util:UtilLibrary:1.0.1'
+    compile 'com.robin.lazy.util:UtilLibrary:1.1.2'
     testCompile 'junit:junit:4.12'
 }
 
