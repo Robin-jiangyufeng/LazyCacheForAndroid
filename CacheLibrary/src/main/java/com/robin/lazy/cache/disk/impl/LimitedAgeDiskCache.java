@@ -74,7 +74,7 @@ public class LimitedAgeDiskCache implements DiskCache {
             LimitedAge loadingDate = loadingDates.get(file);
             if (loadingDate == null) {
                 cached = false;
-                long savaMaxAge = limitedAgePropertiesConfig.getLong(LimitedAge.class.getName(), 0);
+                long savaMaxAge = limitedAgePropertiesConfig.getLong(key, 0);
                 if (savaMaxAge <= 0) {
                     savaMaxAge = maxAge;
                 }
@@ -184,7 +184,7 @@ public class LimitedAgeDiskCache implements DiskCache {
         File file = getFile(key);
         long currentTime = System.currentTimeMillis();
         file.setLastModified(currentTime);
-        limitedAgePropertiesConfig.setLong(LimitedAge.class.getName(), mMaxlimitTime);
+        limitedAgePropertiesConfig.setLong(key, mMaxlimitTime);
         loadingDates.put(file, new LimitedAge(currentTime, mMaxlimitTime));
     }
 
