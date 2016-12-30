@@ -21,13 +21,13 @@
 #   使用方法
 ### 库引入方式
    * Gradle: 
-     ````compile 'com.robin.lazy.cache:CacheLibrary:1.0.5'````
+     ````compile 'com.robin.lazy.cache:CacheLibrary:1.0.6'````
    * Maven:
      ````
        <dependency>
           <groupId>com.robin.lazy.cache</groupId>
           <artifactId>CacheLibrary</artifactId>
-          <version>1.0.1</version>
+          <version>1.0.6</version>
           <type>pom</type>
         </dependency>
       ````

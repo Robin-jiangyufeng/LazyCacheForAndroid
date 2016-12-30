@@ -46,7 +46,7 @@ public class StringReadFromDisk implements ReadFromDisk<String> {
 			// 创建字符流缓冲区
 			read = new BufferedReader(new InputStreamReader(
 					new FileInputStream(File), responseCharset));// 缓冲
-			StringBuffer stBuffer = new StringBuffer(responseCharset);
+			StringBuffer stBuffer = new StringBuffer();
 			String temp = null;
 			while ((temp = read.readLine()) != null) {
 				stBuffer.append(temp);
