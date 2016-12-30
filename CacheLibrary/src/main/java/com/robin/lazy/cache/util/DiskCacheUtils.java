@@ -17,25 +17,24 @@ package com.robin.lazy.cache.util;
 
 import android.content.Context;
 
-import com.robin.lazy.logger.LazyLogger;
-
-import java.io.File;
-import java.io.IOException;
-
 import com.robin.lazy.cache.disk.DiskCache;
 import com.robin.lazy.cache.disk.impl.BaseDiskCache;
 import com.robin.lazy.cache.disk.impl.ext.LruDiskCache;
 import com.robin.lazy.cache.disk.naming.FileNameGenerator;
 import com.robin.lazy.cache.disk.naming.HashCodeFileNameGenerator;
+import com.robin.lazy.logger.LazyLogger;
 import com.robin.lazy.util.StorageUtils;
 
+import java.io.File;
+import java.io.IOException;
+
 /**
- * Utility for convenient work with disk cache.<br />
- * <b>NOTE:</b> This utility works with file system so avoid using it on
- * application main thread.
+ * 磁盘缓存相关工具
  *
- * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
- * @since 1.8.0
+ * @author jiangyufeng
+ * @version [版本号, 2015年12月15日]
+ * @see [相关类/方法]
+ * @since [产品/模块版本]
  */
 public final class DiskCacheUtils {
 
@@ -43,8 +42,8 @@ public final class DiskCacheUtils {
 	}
 
 	/**
-	 * Creates {@linkplain HashCodeFileNameGenerator default implementation} of
-	 * FileNameGenerator
+	 * 创建一个文件名称转换器
+	 * @return
 	 */
 	public static FileNameGenerator createFileNameGenerator() {
 		return new HashCodeFileNameGenerator();

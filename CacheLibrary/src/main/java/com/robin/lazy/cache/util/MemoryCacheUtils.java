@@ -21,29 +21,25 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.os.Build;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-
 import com.robin.lazy.cache.memory.EntryRemovedProcess;
 import com.robin.lazy.cache.memory.MemoryCache;
 import com.robin.lazy.cache.memory.SizeOfCacheCalculator;
 import com.robin.lazy.cache.memory.impl.EntryRemovedProcessMemoryCache;
 import com.robin.lazy.cache.memory.impl.LruMemoryCache;
 import com.robin.lazy.cache.memory.impl.SizeOfMemoryCache;
-import com.robin.lazy.util.bitmap.ImageSize;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Utility for generating of keys for memory cache, key comparing and other work
- * with memory cache
+ * 内存缓存工具
  *
- * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
- * @since 1.6.3
+ * @author jiangyufeng
+ * @version [版本号, 2015年12月15日]
+ * @see [相关类/方法]
+ * @since [产品/模块版本]
  */
 public final class MemoryCacheUtils {
-
-	private static final String URI_AND_SIZE_SEPARATOR = "_";
-	private static final String WIDTH_AND_HEIGHT_SEPARATOR = "x";
 
 	private MemoryCacheUtils() {
 	}
@@ -141,38 +137,15 @@ public final class MemoryCacheUtils {
 		return am.getLargeMemoryClass();
 	}
 
-	/**
-	 * Generates key for memory cache for incoming image (URI + size).<br />
-	 * Pattern for cache key - <b>[imageUri]_[width]x[height]</b>.
-	 */
-	public static String generateKey(String imageUri, ImageSize targetSize) {
-		return new StringBuilder(imageUri).append(URI_AND_SIZE_SEPARATOR)
-				.append(targetSize.getWidth())
-				.append(WIDTH_AND_HEIGHT_SEPARATOR)
-				.append(targetSize.getHeight()).toString();
-	}
-
-	public static Comparator<String> createFuzzyKeyComparator() {
-		return new Comparator<String>() {
-			@Override
-			public int compare(String k1, String k2) {
-				String key1 = k1.substring(0,
-						k1.lastIndexOf(URI_AND_SIZE_SEPARATOR));
-				String key2 = k2.substring(0,
-						k2.lastIndexOf(URI_AND_SIZE_SEPARATOR));
-				return key1.compareTo(key2);
-			}
-		};
-	}
 
 	/**
-	 * Searches all bitmaps in memory cache which are corresponded to incoming
-	 * URI.<br />
-	 * <b>Note:</b> Memory cache can contain multiple sizes of the same key if
-	 * only you didn't set
+	 * 根据key查找对应的数据
+	 * @param key
+	 * @param memoryCache
 	 * @param <V>
+	 * @return
 	 */
-	public static <V> List<V> findCachedBitmapsForkey(String key,
+	public static <V> List<V> findCachedForkey(String key,
 			MemoryCache memoryCache) {
 		List<V> values = new ArrayList<V>();
 		for (String k : memoryCache.keys()) {
@@ -185,9 +158,11 @@ public final class MemoryCacheUtils {
 	}
 
 	/**
-	 * Searches all keys in memory cache which are corresponded to incoming URI.<br />
-	 * <b>Note:</b> Memory cache can contain multiple sizes of the same key if
-	 * only you didn't set
+	 * 根据key查找对应的数据
+	 * @param key
+	 * @param memoryCache
+	 * @param <V>
+	 * @return
 	 */
 	public static List<String> findCacheKeysForkey(String key,
 			MemoryCache memoryCache) {
@@ -201,9 +176,9 @@ public final class MemoryCacheUtils {
 	}
 
 	/**
-	 * Removes from memory cache all keys for incoming URI.<br />
-	 * <b>Note:</b> Memory cache can contain multiple sizes of the same key if
-	 * only you didn't set
+	 * 根据key删除对应的数据
+	 * @param key
+	 * @param memoryCache
 	 */
 	public static void removeFromCache(String key, MemoryCache memoryCache) {
 		List<String> keysToRemove = new ArrayList<String>();

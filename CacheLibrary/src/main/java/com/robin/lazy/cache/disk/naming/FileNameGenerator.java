@@ -16,13 +16,19 @@
 package com.robin.lazy.cache.disk.naming;
 
 /**
- * Generates names for files at disk cache
+ * 名称转换器
  *
- * @author Sergey Tarasevich
- * @since
+ * @author jiangyufeng
+ * @version [版本号, 2015年12月15日]
+ * @see [相关类/方法]
+ * @since [产品/模块版本]
  */
 public interface FileNameGenerator {
 
-	/** Generates unique file name for image defined by URI */
-	String generate(String imageUri);
+	/**
+	 * 转换名称
+	 * @param keyName
+	 * @return
+	 */
+	String generate(String keyName);
 }

@@ -15,22 +15,30 @@
  *******************************************************************************/
 package com.robin.lazy.cache.memory;
 
+import com.robin.lazy.cache.Cache;
+
 import java.util.Collection;
 import java.util.Map;
 
-import com.robin.lazy.cache.Cache;
-
 /**
- * Interface for memory cache
+ * 内存缓存操作接口
  *
- * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
+ * @author jiangyufeng
+ * @version [版本号, 2015年12月15日]
+ * @see [相关类/方法]
+ * @since [产品/模块版本]
  */
 public interface MemoryCache extends Cache {
 
-	/** Returns all keys of cache */
+	/**
+	 * 获取所有的key
+	 * @return
+	 */
 	Collection<String> keys();
-	
-	/** Returns all Map of cache 
+
+	/**
+	 * 获取缓存数据集合
+	 * @return
 	 */
 	Map<String, ?> snapshot();
 	
