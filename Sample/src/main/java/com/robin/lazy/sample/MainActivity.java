@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(view);
         findViewById(R.id.buttonSave).setOnClickListener(this);
         findViewById(R.id.buttonLoad).setOnClickListener(this);
+        findViewById(R.id.buttonClear).setOnClickListener(this);
         textView=(TextView)findViewById(R.id.textView);
         mPtrFrame=(PtrFrameLayout)view;
         // the following are default settings
@@ -94,6 +95,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String area_strs=CacheLoaderManager.getInstance().loadString("area_strs");
             Toast.makeText(MainActivity.this, "加载数据用时:" + (System.currentTimeMillis() - lastTime) + "毫秒", Toast.LENGTH_SHORT).show();
             textView.setText(area_strs);
+        }else if(id==R.id.buttonClear){
+            CacheLoaderManager.getInstance().clear();
         }
     }
 }
