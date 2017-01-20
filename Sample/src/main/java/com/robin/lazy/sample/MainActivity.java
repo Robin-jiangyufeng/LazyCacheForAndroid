@@ -2,6 +2,7 @@ package com.robin.lazy.sample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -85,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             String area_strs = FileUtil.readAssets(MainActivity.this, "province.json");
                             lastTime = System.currentTimeMillis();
                             CacheLoaderManager.getInstance().saveString("area_strs", area_strs, 5);
+                            CacheLoaderManager.getInstance().saveString("area_strs1", area_strs, 5);
                             textView.setText("保存数据用时:"+(System.currentTimeMillis() - lastTime) + "毫秒");
                         }
                     });
@@ -93,6 +95,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (id == R.id.buttonLoad) {
             lastTime = System.currentTimeMillis();
             String area_strs=CacheLoaderManager.getInstance().loadString("area_strs");
+            if(TextUtils.isEmpty(area_strs)){
+                area_strs=CacheLoaderManager.getInstance().loadString("area_strs1");
+            }
             Toast.makeText(MainActivity.this, "加载数据用时:" + (System.currentTimeMillis() - lastTime) + "毫秒", Toast.LENGTH_SHORT).show();
             textView.setText(area_strs);
         }else if(id==R.id.buttonClear){
