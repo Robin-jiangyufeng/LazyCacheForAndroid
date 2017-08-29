@@ -11,15 +11,13 @@
 
 package com.robin.lazy.cache.memory.impl;
 
-import android.support.v4.util.LruCache;
-
+import com.robin.lazy.cache.memory.MemoryCache;
+import com.robin.lazy.cache.memory.impl.ext.LruCache;
 import com.robin.lazy.logger.LazyLogger;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
-
-import com.robin.lazy.cache.memory.MemoryCache;
 
 /**
  * Lru算法的内存缓存

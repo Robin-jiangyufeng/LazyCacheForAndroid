@@ -1,1 +1,1 @@
-include ':CacheLibrary', ':Sample'
+include ':LazyCache', ':Sample'

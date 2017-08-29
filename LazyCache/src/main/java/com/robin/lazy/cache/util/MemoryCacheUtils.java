@@ -161,7 +161,6 @@ public final class MemoryCacheUtils {
 	 * 根据key查找对应的数据
 	 * @param key
 	 * @param memoryCache
-	 * @param <V>
 	 * @return
 	 */
 	public static List<String> findCacheKeysForkey(String key,

@@ -25,7 +25,6 @@ public class EntryRemovedProcess<V> {
 	 * 当item被回收或者删掉时调用。改方法当value被回收释放存储空间时被remove调用， 
 	 * 或者替换item值时put调用，默认实现什么都没做。
 	 * 
-	 * @param <V>
 	 * @param evicted 是否释放被删除的空间
 	 * @param key
 	 * @param oldValue 老的数据
