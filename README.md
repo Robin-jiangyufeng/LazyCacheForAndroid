@@ -20,14 +20,21 @@
 
 #   使用方法
 ### 库引入方式
-   * Gradle: 
-     ````compile 'com.robin.lazy.cache:CacheLibrary:1.0.6'````
+   * Gradle:
+     ````
+       repositories {
+            jcenter()
+            maven {url 'https://dl.bintray.com/jiangyufeng/maven/'}
+        }
+        
+       compile 'com.robin.lazy.cache:LazyCache:1.0.7'
+     ````
    * Maven:
      ````
        <dependency>
           <groupId>com.robin.lazy.cache</groupId>
-          <artifactId>CacheLibrary</artifactId>
-          <version>1.0.6</version>
+          <artifactId>LazyCache</artifactId>
+          <version>1.0.7</version>
           <type>pom</type>
         </dependency>
       ````
