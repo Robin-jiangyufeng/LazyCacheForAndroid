@@ -15,7 +15,7 @@
  *******************************************************************************/
 package com.robin.lazy.cache.disk.naming;
 
-import com.robin.lazy.logger.LazyLogger;
+import com.robin.lazy.cache.util.log.CacheLog;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -28,6 +28,8 @@ import java.security.NoSuchAlgorithmException;
  * @since 1.4.0
  */
 public class Md5FileNameGenerator implements FileNameGenerator {
+
+	private final static String LOG_TAG=Md5FileNameGenerator.class.getSimpleName();
 
 	private static final String HASH_ALGORITHM = "MD5";
 	private static final int RADIX = 10 + 26; // 10 digits + 26 letters
@@ -46,7 +48,7 @@ public class Md5FileNameGenerator implements FileNameGenerator {
 			digest.update(data);
 			hash = digest.digest();
 		} catch (NoSuchAlgorithmException e) {
-			LazyLogger.e(e, "");
+			CacheLog.e(LOG_TAG, e.getMessage(),e);
 		}
 		return hash;
 	}

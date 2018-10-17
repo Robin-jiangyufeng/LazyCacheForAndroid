@@ -15,16 +15,15 @@
  *******************************************************************************/
 package com.robin.lazy.cache.disk.impl;
 
-import com.robin.lazy.logger.LazyLogger;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 import com.robin.lazy.cache.disk.DiskCache;
 import com.robin.lazy.cache.disk.naming.FileNameGenerator;
 import com.robin.lazy.cache.disk.read.ReadFromDisk;
 import com.robin.lazy.cache.disk.write.WriteInDisk;
+import com.robin.lazy.cache.util.log.CacheLog;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * Base disk cache.
@@ -34,6 +33,7 @@ import com.robin.lazy.cache.disk.write.WriteInDisk;
  * @since 1.0.0
  */
 public class BaseDiskCache implements DiskCache {
+	private final static String LOG_TAG=BaseDiskCache.class.getSimpleName();
 
 	private static final String ERROR_ARG_NULL = " argument must be not null";
 	private static final String TEMP_key_POSTFIX = ".tmp";
@@ -95,7 +95,7 @@ public class BaseDiskCache implements DiskCache {
                 return size;     
             }     
         } else {     
-            LazyLogger.e("文件或者文件夹不存在，请检查路径是否正确！");
+            CacheLog.e(LOG_TAG,"文件或者文件夹不存在，请检查路径是否正确！");
             return 0;     
         }     
     }

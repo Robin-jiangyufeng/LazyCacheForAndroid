@@ -11,7 +11,7 @@
 
 package com.robin.lazy.cache.disk.read;
 
-import com.robin.lazy.logger.LazyLogger;
+import com.robin.lazy.cache.util.log.CacheLog;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,15 +28,17 @@ import java.io.InputStream;
  */
 public class InputStreamReadFormDisk implements ReadFromDisk<InputStream> {
 
+	private final static String LOG_TAG=InputStreamReadFormDisk.class.getSimpleName();
+
 	@Override
 	public InputStream readOut(File file) {
 		InputStream input = null;
 		try {
 			input = new FileInputStream(file);
 		} catch (FileNotFoundException e) {
-			LazyLogger.e(e, "读取InputStream错误");
+			CacheLog.e(LOG_TAG, "读取InputStream错误",e);
 		} catch (Exception e) {
-			LazyLogger.e(e, "读取InputStream错误");
+			CacheLog.e(LOG_TAG, "读取InputStream错误",e);
 		}
 		return input;
 	}

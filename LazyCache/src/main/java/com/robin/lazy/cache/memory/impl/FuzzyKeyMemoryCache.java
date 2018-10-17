@@ -15,13 +15,13 @@
  *******************************************************************************/
 package com.robin.lazy.cache.memory.impl;
 
-import com.robin.lazy.logger.LazyLogger;
+
+import com.robin.lazy.cache.memory.MemoryCache;
+import com.robin.lazy.cache.util.log.CacheLog;
 
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Map;
-
-import com.robin.lazy.cache.memory.MemoryCache;
 
 /**
  * Decorator for {@link MemoryCache}. Provides special feature for cache: some
@@ -36,6 +36,8 @@ import com.robin.lazy.cache.memory.MemoryCache;
  */
 public class FuzzyKeyMemoryCache implements MemoryCache {
 
+	private final static String LOG_TAG=FuzzyKeyMemoryCache.class.getSimpleName();
+
 	private final MemoryCache cache;
 	private final Comparator<String> keyComparator;
 
@@ -48,7 +50,7 @@ public class FuzzyKeyMemoryCache implements MemoryCache {
 	@Override
 	public <V> boolean put(String key, V value) {
 		if (cache == null) {
-			LazyLogger.e(new NullPointerException(), "MemoryCache缓存操作对象为空");
+			CacheLog.e(LOG_TAG, "MemoryCache缓存操作对象为空",new NullPointerException());
 			return false;
 		}
 		// Search equal key and remove this entry
@@ -70,7 +72,7 @@ public class FuzzyKeyMemoryCache implements MemoryCache {
 	@Override
 	public <V> boolean put(String key, V value, long maxLimitTime) {
 		if (cache == null) {
-			LazyLogger.e(new NullPointerException(), "MemoryCache缓存操作对象为空");
+			CacheLog.e(LOG_TAG, "MemoryCache缓存操作对象为空",new NullPointerException());
 			return false;
 		}
 		synchronized (cache) {
@@ -91,7 +93,7 @@ public class FuzzyKeyMemoryCache implements MemoryCache {
 	@Override
 	public <V> V get(String key) {
 		if (cache == null) {
-			LazyLogger.e(new NullPointerException(), "MemoryCache缓存操作对象为空");
+			CacheLog.e(LOG_TAG, "MemoryCache缓存操作对象为空",new NullPointerException());
 			return null;
 		}
 		return cache.get(key);
@@ -100,7 +102,7 @@ public class FuzzyKeyMemoryCache implements MemoryCache {
 	@Override
 	public boolean remove(String key) {
 		if (cache == null) {
-			LazyLogger.e(new NullPointerException(), "MemoryCache缓存操作对象为空");
+			CacheLog.e(LOG_TAG ,"MemoryCache缓存操作对象为空",new NullPointerException());
 			return false;
 		}
 		return cache.remove(key);
@@ -109,7 +111,7 @@ public class FuzzyKeyMemoryCache implements MemoryCache {
 	@Override
 	public Collection<String> keys() {
 		if (cache == null) {
-			LazyLogger.e(new NullPointerException(), "MemoryCache缓存操作对象为空");
+			CacheLog.e(LOG_TAG, "MemoryCache缓存操作对象为空",new NullPointerException());
 			return null;
 		}
 		return cache.keys();
@@ -118,7 +120,7 @@ public class FuzzyKeyMemoryCache implements MemoryCache {
 	@Override
 	public Map<String, ?> snapshot() {
 		if (cache == null) {
-			LazyLogger.e(new NullPointerException(), "MemoryCache缓存操作对象为空");
+			CacheLog.e(LOG_TAG, "MemoryCache缓存操作对象为空",new NullPointerException());
 			return null;
 		}
 		return cache.snapshot();
@@ -127,7 +129,7 @@ public class FuzzyKeyMemoryCache implements MemoryCache {
 	@Override
 	public void resize(int maxSize) {
 		if (cache == null) {
-			LazyLogger.e(new NullPointerException(), "MemoryCache缓存操作对象为空");
+			CacheLog.e(LOG_TAG, "MemoryCache缓存操作对象为空",new NullPointerException());
 			return;
 		}
 		cache.resize(maxSize);
@@ -136,7 +138,7 @@ public class FuzzyKeyMemoryCache implements MemoryCache {
 	@Override
 	public void clear() {
 		if (cache == null) {
-			LazyLogger.e(new NullPointerException(), "MemoryCache缓存操作对象为空");
+			CacheLog.e(LOG_TAG, "MemoryCache缓存操作对象为空",new NullPointerException());
 			return;
 		}
 		cache.clear();
@@ -145,7 +147,7 @@ public class FuzzyKeyMemoryCache implements MemoryCache {
 	@Override
 	public void close() {
 		if (cache == null) {
-			LazyLogger.e(new NullPointerException(), "MemoryCache缓存操作对象为空");
+			CacheLog.e(LOG_TAG, "MemoryCache缓存操作对象为空",new NullPointerException());
 			return;
 		}
 		cache.close();

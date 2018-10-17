@@ -9,8 +9,8 @@ android {
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 26
-        versionCode 107
-        versionName "1.0.7"
+        versionCode 108
+        versionName "1.0.8"
     }
 
     lintOptions {
@@ -27,7 +27,7 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.robin.lazy.util:UtilLibrary:1.1.3'
+    compile 'com.robin.lazy.util:UtilLibrary:1.1.4'
     testCompile 'junit:junit:4.12'
 }
 
@@ -44,7 +44,7 @@ ext {
     siteUrl = 'https://github.com/Robin-jiangyufeng/LazyCacheForAndroid'
     gitUrl = 'https://github.com/Robin-jiangyufeng/LazyCacheForAndroid.git'
 
-    libraryVersion = '1.0.7'
+    libraryVersion = '1.0.8'
 
     developerId = 'jiangyufeng'
     developerName = 'jiangyufeng'
@@ -62,44 +62,44 @@ version = ext.libraryVersion
 group = ext.publishedGroupId
 
 //打包模块,在上传到jcenter时(执行gradle bintrayUpload命)需要删除此模块
-//install {
-//    repositories.mavenInstaller {
-//        // This generates POM.xml with proper parameters
-//        pom {
-//            project {
-//                packaging 'aar'
-//                groupId publishedGroupId
-//                artifactId artifact
-//
-//                // Add your description here
-//                name libraryName
-//                description libraryDescription
-//                url siteUrl
-//
-//                // Set your license
-//                licenses {
-//                    license {
-//                        name licenseName
-//                        url licenseUrl
-//                    }
-//                }
-//                developers {
-//                    developer {
-//                        id developerId
-//                        name developerName
-//                        email developerEmail
-//                    }
-//                }
-//                scm {
-//                    connection gitUrl
-//                    developerConnection gitUrl
-//                    url siteUrl
-//
-//                }
-//            }
-//        }
-//    }
-//}
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                groupId publishedGroupId
+                artifactId artifact
+
+                // Add your description here
+                name libraryName
+                description libraryDescription
+                url siteUrl
+
+                // Set your license
+                licenses {
+                    license {
+                        name licenseName
+                        url licenseUrl
+                    }
+                }
+                developers {
+                    developer {
+                        id developerId
+                        name developerName
+                        email developerEmail
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+
+                }
+            }
+        }
+    }
+}
 
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs

@@ -13,7 +13,7 @@ package com.robin.lazy.cache.memory.impl;
 
 import com.robin.lazy.cache.memory.MemoryCache;
 import com.robin.lazy.cache.memory.impl.ext.LruCache;
-import com.robin.lazy.logger.LazyLogger;
+import com.robin.lazy.cache.util.log.CacheLog;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -29,6 +29,8 @@ import java.util.Map;
  */
 public class LruMemoryCache implements MemoryCache {
 
+	private final static String LOG_TAG=LruMemoryCache.class.getSimpleName();
+	
 	/** 内存缓存存储类 */
 	private LruCache<String, Object> lruCache;
 
@@ -64,9 +66,9 @@ public class LruMemoryCache implements MemoryCache {
 				lruCache.put(key, value);
 				return true;
 			} catch (NullPointerException e) {
-				LazyLogger.e(e, "put to menory fail");
+				CacheLog.e(LOG_TAG, "put to menory fail",e);
 			} catch (Exception e) {
-				LazyLogger.e(e, "put to menory fail");
+				CacheLog.e(LOG_TAG, "put to menory fail",e);
 			}
 		}
 		return false;
@@ -88,11 +90,11 @@ public class LruMemoryCache implements MemoryCache {
 			try {
 				values = (V) lruCache.get(key);
 			} catch (NullPointerException e) {
-				LazyLogger.e(e, "缓存数据不存在，不能强制类型转换");
+				CacheLog.e(LOG_TAG, "缓存数据不存在，不能强制类型转换",e);
 			} catch (ClassCastException e) {
-				LazyLogger.e(e, "强制类型转换错误,不符合的类型");
+				CacheLog.e(LOG_TAG, "强制类型转换错误,不符合的类型",e);
 			} catch (Exception e) {
-				LazyLogger.e(e, "");
+				CacheLog.e(LOG_TAG, e.getMessage(),e);
 			}
 			return values;
 		}

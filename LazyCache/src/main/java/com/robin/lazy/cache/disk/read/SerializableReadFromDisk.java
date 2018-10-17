@@ -11,7 +11,8 @@
 
 package com.robin.lazy.cache.disk.read;
 
-import com.robin.lazy.logger.LazyLogger;
+import com.robin.lazy.cache.CacheLoaderManager;
+import com.robin.lazy.cache.util.log.CacheLog;
 import com.robin.lazy.util.IoUtils;
 
 import java.io.File;
@@ -30,6 +31,8 @@ import java.io.StreamCorruptedException;
  * @since [产品/模块版本]
  */
 public class SerializableReadFromDisk<V extends Serializable> implements ReadFromDisk<V> {
+	
+	private final static String LOG_TAG=SerializableReadFromDisk.class.getSimpleName();
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -40,11 +43,11 @@ public class SerializableReadFromDisk<V extends Serializable> implements ReadFro
 			read = new ObjectInputStream(new FileInputStream(file));
 			result=(V)read.readObject();
 		} catch (StreamCorruptedException e) {
-			LazyLogger.e(e, "读取Serialzable错误");
+			CacheLog.e(LOG_TAG,"读取Serialzable错误",e);
 		} catch (IOException e) {
-			LazyLogger.e(e, "读取Serialzable错误");
+			CacheLog.e(LOG_TAG,"读取Serialzable错误",e);
 		} catch (ClassNotFoundException e) {
-			LazyLogger.e(e, "读取Serialzable错误");
+			CacheLog.e(LOG_TAG, "读取Serialzable错误",e);
 		}finally{
 			IoUtils.closeSilently(read);
 		}

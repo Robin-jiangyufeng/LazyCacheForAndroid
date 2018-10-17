@@ -12,7 +12,8 @@
 package com.robin.lazy.cache.disk.write;
 
 
-import com.robin.lazy.logger.LazyLogger;
+import com.robin.lazy.cache.disk.read.InputStreamReadFormDisk;
+import com.robin.lazy.cache.util.log.CacheLog;
 import com.robin.lazy.util.IoUtils;
 
 import java.io.IOException;
@@ -30,6 +31,8 @@ import java.io.Serializable;
  */
 public class SerializableWriteInDisk<V extends Serializable> extends WriteInDisk<V> {
 
+	private final static String LOG_TAG=SerializableWriteInDisk.class.getSimpleName();
+
 	@Override
 	public boolean writeIn(OutputStream out,V values){
 		ObjectOutputStream objectOut = null;
@@ -40,9 +43,9 @@ public class SerializableWriteInDisk<V extends Serializable> extends WriteInDisk
 			objectOut.flush();
 			isSucce=true;
 		} catch (IOException e) {
-			LazyLogger.e(e, "Serialzable写入缓存错误");
+			CacheLog.e(LOG_TAG, "Serialzable写入缓存错误",e);
 		}catch (Exception e) {
-			LazyLogger.e(e, "Serialzable写入缓存错误");
+			CacheLog.e(LOG_TAG, "Serialzable写入缓存错误",e);
 		}finally{
 			IoUtils.closeSilently(objectOut);
 		}

@@ -12,7 +12,7 @@
 package com.robin.lazy.cache.disk.write;
 
 
-import com.robin.lazy.logger.LazyLogger;
+import com.robin.lazy.cache.util.log.CacheLog;
 import com.robin.lazy.util.IoUtils;
 
 import java.io.IOException;
@@ -28,6 +28,8 @@ import java.io.OutputStream;
  * @since [产品/模块版本]
  */
 public class InputStreamWriteInDisk extends WriteInDisk<InputStream> {
+
+	private final static String LOG_TAG=InputStreamWriteInDisk.class.getSimpleName();
 
 	private static final int DEFAULT_BUFFER_SIZE = 4 * 1024; // 4 Kb
 
@@ -48,9 +50,9 @@ public class InputStreamWriteInDisk extends WriteInDisk<InputStream> {
 					bufferSize);
 			out.flush();
 		} catch (IOException e) {
-			LazyLogger.e(e, "InputStream写入缓存错误");
+			CacheLog.e(LOG_TAG, "InputStream写入缓存错误",e);
 		} catch (Exception e) {
-			LazyLogger.e(e, "InputStream写入缓存错误");
+			CacheLog.e(LOG_TAG, "InputStream写入缓存错误",e);
 		} finally {
 			IoUtils.closeSilently(out);
 		}

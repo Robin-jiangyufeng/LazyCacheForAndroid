@@ -11,7 +11,9 @@
 
 package com.robin.lazy.cache.disk.read;
 
-import com.robin.lazy.logger.LazyLogger;
+import android.util.Log;
+
+import com.robin.lazy.cache.util.log.CacheLog;
 import com.robin.lazy.util.IoUtils;
 
 import java.io.BufferedReader;
@@ -30,7 +32,8 @@ import java.io.StreamCorruptedException;
  * @since [产品/模块版本]
  */
 public class StringReadFromDisk implements ReadFromDisk<String> {
-
+	private final static String LOG_TAG=StringReadFromDisk.class.getSimpleName();
+	
 	private final String DEFAULT_CHARSET = "UTF-8";
 
 	/**
@@ -53,9 +56,9 @@ public class StringReadFromDisk implements ReadFromDisk<String> {
 			}
 			s = stBuffer.toString();
 		} catch (StreamCorruptedException e) {
-			LazyLogger.e(e, "读取String错误");
+			CacheLog.e(LOG_TAG, "读取String错误",e);
 		} catch (IOException e) {
-			LazyLogger.e(e, "读取String错误");
+			CacheLog.e(LOG_TAG, "读取String错误",e);
 		} finally {
 			IoUtils.closeSilently(read);
 		}

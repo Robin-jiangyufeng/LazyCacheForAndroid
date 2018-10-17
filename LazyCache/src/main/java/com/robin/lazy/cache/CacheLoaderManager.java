@@ -29,7 +29,7 @@ import com.robin.lazy.cache.entity.CacheGetEntity;
 import com.robin.lazy.cache.entity.CachePutEntity;
 import com.robin.lazy.cache.memory.MemoryCache;
 import com.robin.lazy.cache.util.MemoryCacheUtils;
-import com.robin.lazy.logger.LazyLogger;
+import com.robin.lazy.cache.util.log.CacheLog;
 import com.robin.lazy.util.IoUtils;
 import com.robin.lazy.util.bitmap.ImageDecodingInfo;
 
@@ -45,7 +45,7 @@ import java.io.Serializable;
  * @since [产品/模块版本]
  */
 public class CacheLoaderManager {
-
+	private final static String LOG_TAG=CacheLoaderManager.class.getSimpleName();
 	private volatile static CacheLoaderManager instance;
 
 	private CacheLoaderConfiguration cacheLoaderConfiguration;
@@ -313,7 +313,7 @@ public class CacheLoaderManager {
 	 */
 	private boolean isInitialize(){
 		if(cacheTask==null){
-			LazyLogger.e("缓存任务没有初始化");
+			CacheLog.e(LOG_TAG,"缓存任务没有初始化");
 			return false;
 		}
 		return true;

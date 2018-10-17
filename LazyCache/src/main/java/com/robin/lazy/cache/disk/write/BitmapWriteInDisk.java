@@ -13,7 +13,7 @@ package com.robin.lazy.cache.disk.write;
 
 import android.graphics.Bitmap;
 
-import com.robin.lazy.logger.LazyLogger;
+import com.robin.lazy.cache.util.log.CacheLog;
 import com.robin.lazy.util.IoUtils;
 
 import java.io.BufferedOutputStream;
@@ -29,6 +29,8 @@ import java.io.OutputStream;
  */
 public class BitmapWriteInDisk extends WriteInDisk<Bitmap> {
 
+	private final static String LOG_TAG=BitmapWriteInDisk.class.getSimpleName();
+	
 	private static final int DEFAULT_BUFFER_SIZE = 32 * 1024; // 32 Kb
 
 	private static final Bitmap.CompressFormat DEFAULT_COMPRESS_FORMAT = Bitmap.CompressFormat.PNG;
@@ -60,7 +62,7 @@ public class BitmapWriteInDisk extends WriteInDisk<Bitmap> {
 					os);
 			os.flush();
 		} catch (Exception e) {
-			LazyLogger.e(e, "Bitmap写入缓存错误");
+			CacheLog.e(LOG_TAG,"Bitmap写入缓存错误",e);
 		} finally {
 			IoUtils.closeSilently(os);
 			if (isRecycle) {

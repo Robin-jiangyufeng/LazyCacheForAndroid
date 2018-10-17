@@ -11,7 +11,7 @@
 
 package com.robin.lazy.cache.disk.read;
 
-import com.robin.lazy.logger.LazyLogger;
+import com.robin.lazy.cache.util.log.CacheLog;
 import com.robin.lazy.util.IoUtils;
 
 import java.io.ByteArrayOutputStream;
@@ -30,6 +30,8 @@ import java.io.InputStream;
  * @since [产品/模块版本]
  */
 public class BytesReadFromDisk implements ReadFromDisk<byte[]> {
+	
+	private final static String LOG_TAG=BytesReadFromDisk.class.getSimpleName();
 
 	private static final int DEFAULT_BUFFER_SIZE = 1 * 1024; // 4 Kb
 
@@ -51,11 +53,11 @@ public class BytesReadFromDisk implements ReadFromDisk<byte[]> {
 			}
 			bytes = baos.toByteArray();
 		} catch (FileNotFoundException e) {
-			LazyLogger.e(e, "从文件读取byte字节数组失败,没有找到文件");
+			CacheLog.e(LOG_TAG,"从文件读取byte字节数组失败,没有找到文件",e);
 		} catch (IOException e) {
-			LazyLogger.e(e, "从文件读取byte字节数组失败");
+			CacheLog.e(LOG_TAG, "从文件读取byte字节数组失败",e);
 		} catch (Exception e) {
-			LazyLogger.e(e, "从文件读取byte字节数组失败");
+			CacheLog.e(LOG_TAG, "从文件读取byte字节数组失败",e);
 		} finally {
 			IoUtils.closeSilently(input);
 			IoUtils.closeSilently(baos);

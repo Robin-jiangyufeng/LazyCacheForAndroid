@@ -12,7 +12,7 @@
 package com.robin.lazy.cache.disk.write;
 
 
-import com.robin.lazy.logger.LazyLogger;
+import com.robin.lazy.cache.util.log.CacheLog;
 import com.robin.lazy.util.IoUtils;
 
 import java.io.IOException;
@@ -29,6 +29,8 @@ import java.io.Writer;
  * @since [产品/模块版本]
  */
 public class StringWriteInDisk extends WriteInDisk<String> {
+
+	private final static String LOG_TAG=StringWriteInDisk.class.getSimpleName();
 
 	private final String DEFAULT_CHARSET = "UTF-8";
 
@@ -47,9 +49,9 @@ public class StringWriteInDisk extends WriteInDisk<String> {
 			writer.flush();
 			isSucce = true;
 		} catch (IOException e) {
-			LazyLogger.e(e, "String写入缓存错误");
+			CacheLog.e(LOG_TAG, "String写入缓存错误",e);
 		} catch (Exception e) {
-			LazyLogger.e(e, "String写入缓存错误");
+			CacheLog.e(LOG_TAG, "String写入缓存错误",e);
 		}finally {
 			IoUtils.closeSilently(writer);
 		}

@@ -26,7 +26,7 @@
             jcenter()
             maven {url 'https://dl.bintray.com/jiangyufeng/maven/'}
         }
-        
+
        compile 'com.robin.lazy.cache:LazyCache:1.0.7'
      ````
    * Maven:

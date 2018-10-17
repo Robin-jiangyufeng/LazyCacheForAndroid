@@ -15,15 +15,14 @@
  *******************************************************************************/
 package com.robin.lazy.cache.disk.impl.ext;
 
-import com.robin.lazy.logger.LazyLogger;
-
-import java.io.File;
-import java.io.IOException;
-
 import com.robin.lazy.cache.disk.DiskCache;
 import com.robin.lazy.cache.disk.naming.FileNameGenerator;
 import com.robin.lazy.cache.disk.read.ReadFromDisk;
 import com.robin.lazy.cache.disk.write.WriteInDisk;
+import com.robin.lazy.cache.util.log.CacheLog;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Lru算法的磁盘缓存实现
@@ -34,6 +33,8 @@ import com.robin.lazy.cache.disk.write.WriteInDisk;
  * @since [产品/模块版本]
  */
 public class LruDiskCache implements DiskCache {
+
+	private final static String LOG_TAG=LruDiskCache.class.getSimpleName();
 
 	private static final String ERROR_ARG_NULL = " argument must be not null";
 	private static final String ERROR_ARG_NEGATIVE = " argument must be positive number";
@@ -117,7 +118,7 @@ public class LruDiskCache implements DiskCache {
 			cache = DiskLruCache.open(cacheDir, 1, 1, cacheMaxSize,
 					cacheMaxFileCount);
 		} catch (IOException e) {
-			LazyLogger.e(e, "");
+			CacheLog.e(LOG_TAG,e.getMessage(),e);
 			if (reserveCacheDir != null) {
 				initCache(reserveCacheDir, null, cacheMaxSize,
 						cacheMaxFileCount);
@@ -146,7 +147,7 @@ public class LruDiskCache implements DiskCache {
 			snapshot = cache.get(getKey(key));
 			return snapshot == null ? null : snapshot.getFile(0);
 		} catch (IOException e) {
-			LazyLogger.e(e, "");
+			CacheLog.e(LOG_TAG,e.getMessage(), e);
 			return null;
 		} finally {
 			if (snapshot != null) {
@@ -195,7 +196,7 @@ public class LruDiskCache implements DiskCache {
 		try {
 			return cache.remove(getKey(key));
 		} catch (IOException e) {
-			LazyLogger.e(e, "");
+			CacheLog.e(LOG_TAG,e.getMessage(), e);
 			return false;
 		}
 	}
@@ -205,7 +206,7 @@ public class LruDiskCache implements DiskCache {
 		try {
 			cache.close();
 		} catch (IOException e) {
-			LazyLogger.e(e, "");
+			CacheLog.e(LOG_TAG,e.getMessage(), e);
 		}
 		cache = null;
 	}
@@ -215,13 +216,13 @@ public class LruDiskCache implements DiskCache {
 		try {
 			cache.delete();
 		} catch (IOException e) {
-			LazyLogger.e(e, "");
+			CacheLog.e(LOG_TAG,e.getMessage(), e);
 		}
 		try {
 			initCache(cache.getDirectory(), reserveCacheDir,
 					cache.getMaxSize(), cache.getMaxFileCount());
 		} catch (IOException e) {
-			LazyLogger.e(e, "");
+			CacheLog.e(LOG_TAG,e.getMessage(), e);
 		}
 	}
 
