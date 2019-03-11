@@ -3,14 +3,13 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    compileSdkVersion 28
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 26
-        versionCode 108
-        versionName "1.0.8"
+        targetSdkVersion 28
+        versionCode 109
+        versionName "1.0.9"
     }
 
     lintOptions {
@@ -26,9 +25,9 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.robin.lazy.util:UtilLibrary:1.1.4'
-    testCompile 'junit:junit:4.12'
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api 'com.robin.lazy.util:UtilLibrary:1.1.5'
+    testImplementation 'junit:junit:4.12'
 }
 
 ext {
@@ -44,7 +43,7 @@ ext {
     siteUrl = 'https://github.com/Robin-jiangyufeng/LazyCacheForAndroid'
     gitUrl = 'https://github.com/Robin-jiangyufeng/LazyCacheForAndroid.git'
 
-    libraryVersion = '1.0.8'
+    libraryVersion = '1.0.9'
 
     developerId = 'jiangyufeng'
     developerName = 'jiangyufeng'

@@ -1,13 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.0'
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "com.robin.lazy.sample"
         minSdkVersion 14
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -33,15 +32,15 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:multidex:1.0.0'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support:multidex:1.0.0'
     //ADD THESE LINES:
-    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
-    androidTestCompile 'com.android.support.test:runner:0.5+'
-    androidTestCompile 'com.android.support.test:rules:0.5+'
-    androidTestCompile 'com.android.support:support-annotations:26.0.0-alpha1'
-    compile 'com.android.support.test.espresso:espresso-core:2.2.2'
-    compile 'in.srain.cube:ultra-ptr:1.0.11'
-    compile project(':LazyCache')
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    testImplementation 'com.android.support.test:runner:0.5+'
+    testImplementation 'com.android.support.test:rules:0.5+'
+    testImplementation 'com.android.support:support-annotations:26.0.0-alpha1'
+    implementation 'com.android.support.test.espresso:espresso-core:2.2.2'
+    implementation 'in.srain.cube:ultra-ptr:1.0.11'
+    implementation project(':LazyCache')
 }
