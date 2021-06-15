@@ -3,7 +3,8 @@
 #  项目介绍
 ### 项目地址
   * [LazyCacheForAndroid](https://github.com/Robin-jiangyufeng/LazyCacheForAndroid)
-
+###版本
+  * [![](https://jitpack.io/v/Robin-jiangyufeng/LazyCacheForAndroid.svg)](https://jitpack.io/#Robin-jiangyufeng/LazyCacheForAndroid)
 ### 介绍:
   * 这是一个android上的数据缓存框架,具有缓存和加载数据速度快,缓存数据类型全,能够实现任意缓存时间等优点
 
@@ -27,7 +28,7 @@
             maven {url 'https://dl.bintray.com/jiangyufeng/maven/'}
         }
 
-       compile 'com.robin.lazy.cache:LazyCache:1.0.7'
+       compile 'com.github.Robin-jiangyufeng:LazyCacheForAndroid:1.0.9'
      ````
    * Maven:
      ````

@@ -28,8 +28,8 @@ proguard/
 /build
 /.gradle
 #/gradle
-gradlew
-gradlew.bat
-gradle.properties
-README.md
+#gradlew
+#gradlew.bat
+#gradle.properties
+#README.md
 
