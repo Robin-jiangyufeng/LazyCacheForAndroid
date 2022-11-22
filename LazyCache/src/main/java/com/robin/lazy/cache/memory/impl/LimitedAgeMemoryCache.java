@@ -15,10 +15,14 @@
  *******************************************************************************/
 package com.robin.lazy.cache.memory.impl;
 
+import android.icu.util.TimeUnit;
+import android.util.TimeUtils;
+
 import com.robin.lazy.cache.LimitedAge;
 import com.robin.lazy.cache.memory.MemoryCache;
 import com.robin.lazy.cache.util.log.CacheLog;
 
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -39,6 +43,7 @@ public class LimitedAgeMemoryCache implements MemoryCache {
 
 	private final MemoryCache cache;
 
+	/**缓存数据最大保存时间(单位秒)*/
 	private final long maxAge;
 	private final Map<String, LimitedAge> loadingDates = Collections
 			.synchronizedMap(new HashMap<String, LimitedAge>());

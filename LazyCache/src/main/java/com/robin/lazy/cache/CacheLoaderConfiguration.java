@@ -30,9 +30,6 @@ import com.robin.lazy.cache.util.DiskCacheUtils;
  */
 public class CacheLoaderConfiguration {
 
-	/** 默认的过期时间(单位分钟) */
-	private final static long MAX_LIMIT_TIEM_DEFAULT = 5;
-
 	/**
 	 * 磁盘缓存类
 	 */
@@ -43,8 +40,8 @@ public class CacheLoaderConfiguration {
 	 */
 	private MemoryCache memoryCache;
 
-	/** 缓存默认有效期(单位分钟) */
-	private long maxAge = MAX_LIMIT_TIEM_DEFAULT;
+	/** 缓存有效期(单位分钟) */
+	private long maxAge ;
 
 	/**
 	 * 
@@ -97,10 +94,7 @@ public class CacheLoaderConfiguration {
 	 * @see [类、类#方法、类#成员]
 	 */
 	public DiskCache getLimitAgeDiskCache() {
-		if (maxAge > 0) {
-			return new LimitedAgeDiskCache(diskCache, maxAge * 60);
-		}
-		return new LimitedAgeDiskCache(diskCache, MAX_LIMIT_TIEM_DEFAULT * 60);
+		return new LimitedAgeDiskCache(diskCache, maxAge * 60);
 	}
 
 	/***
@@ -133,11 +127,7 @@ public class CacheLoaderConfiguration {
 	 * @see [类、类#方法、类#成员]
 	 */
 	public MemoryCache getLimitedAgeMemoryCache() {
-		if (maxAge > 0) {
-			return new LimitedAgeMemoryCache(memoryCache, maxAge * 60);
-		}
-		return new LimitedAgeMemoryCache(memoryCache,
-				MAX_LIMIT_TIEM_DEFAULT * 60);
+		return new LimitedAgeMemoryCache(memoryCache, maxAge * 60);
 	}
 
 	/***

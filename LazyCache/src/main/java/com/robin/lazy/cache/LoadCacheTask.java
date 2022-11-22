@@ -181,7 +181,7 @@ public class LoadCacheTask {
 				if(diskCache instanceof LimitedAgeDiskCache){
 					LimitedAgeDiskCache  limitedAgeDiskCache=(LimitedAgeDiskCache)diskCache;
 					long limitedTime=limitedAgeDiskCache.getLimitedTime(key);
-					if(limitedTime>0){
+					if(limitedTime>0||limitedTime == -1){
 						memoryCache.put(key, value, limitedTime);
 					}
 				}else{

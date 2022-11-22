@@ -43,6 +43,7 @@ public class LimitedAgeDiskCache implements DiskCache {
     private final Map<File, LimitedAge> loadingDates = Collections
             .synchronizedMap(new HashMap<File, LimitedAge>());
 
+    /**最大有效时间(单位秒,小于等于0时代办长期有效)*/
     private long maxAge;
 
     /**
@@ -191,7 +192,7 @@ public class LimitedAgeDiskCache implements DiskCache {
     }
 
     /**
-     * 获取数据剩余有效时间(单位秒)
+     * 获取数据剩余有效时间(单位秒,-1为始终有效)
      *
      * @return long
      * @throws
@@ -205,7 +206,7 @@ public class LimitedAgeDiskCache implements DiskCache {
                 return limitedAge.limitedTime();
             }
         }
-        return 0;
+        return -1;
     }
 
 }

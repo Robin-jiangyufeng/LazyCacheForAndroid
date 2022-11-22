@@ -21,15 +21,12 @@ package com.robin.lazy.cache;
 public class LimitedAge {
 	/** 保存时候的时间(单位毫秒) */
 	private long saveTime;
-	/** 磁盘缓存文件的最大有效时间(单位秒) */
+	/** 磁盘缓存文件的最大有效时间(单位秒,如果小于等于0则永久保存) */
 	private long maxLimitTime;
 
 	public LimitedAge(long saveTime, long maxLimitTime) {
 		this.saveTime = saveTime;
 		this.maxLimitTime = maxLimitTime;
-		if (this.maxLimitTime <= 0) {
-			this.maxLimitTime = Long.MAX_VALUE;
-		}
 	}
 
 	/***
@@ -40,6 +37,7 @@ public class LimitedAge {
 	 * @see [类、类#方法、类#成员]
 	 */
 	public boolean checkExpire() {
+		if(maxLimitTime<=0)return false;
 		if (System.currentTimeMillis() - saveTime > (maxLimitTime * 1000)) {
 			return true;
 		}
@@ -47,14 +45,14 @@ public class LimitedAge {
 	}
 	
 	/**
-	 * 计算数据剩余有效时间(单位秒)
+	 * 计算数据剩余有效时间(单位秒,-1为始终有效)
 	 * @return
 	 * long
 	 * @throws
 	 * @see [类、类#方法、类#成员]
 	 */
 	public long limitedTime(){
-		return (maxLimitTime*1000-(System.currentTimeMillis()-saveTime))/1000;
+		return maxLimitTime<=0?-1:(maxLimitTime*1000-(System.currentTimeMillis()-saveTime))/1000;
 	}
 
 	/***
