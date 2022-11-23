@@ -1,69 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<in.srain.cube.views.ptr.PtrFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/store_house_ptr_image_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    cube_ptr:ptr_duration_to_close="300"
-    cube_ptr:ptr_duration_to_close_header="2000"
-    cube_ptr:ptr_keep_header_when_refresh="true"
-    cube_ptr:ptr_pull_to_fresh="false"
-    cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
-    cube_ptr:ptr_resistance="1.7"
-    tools:context="com.robin.lazy.sample.MainActivity">
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText" />
 
     <LinearLayout
-        android:id="@+id/store_house_ptr_image_content"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:orientation="vertical"
-        android:padding="10dp">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText" />
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <Button
-                android:id="@+id/buttonSave"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:text="保存" />
-
-            <Button
-                android:id="@+id/buttonLoad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:text="加载" />
-            <Button
-                android:id="@+id/buttonClear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:text="清理" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/textView"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/buttonSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="5dp"
-            android:text="Hello World!" />
-    </LinearLayout>
-    /
+            android:layout_alignParentTop="true"
+            android:text="保存" />
 
-</in.srain.cube.views.ptr.PtrFrameLayout>
+        <Button
+            android:id="@+id/buttonLoad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="加载" />
+        <Button
+            android:id="@+id/buttonClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="清理" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:text="Hello World!" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

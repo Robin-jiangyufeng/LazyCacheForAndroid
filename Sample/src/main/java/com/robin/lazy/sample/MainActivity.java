@@ -1,7 +1,7 @@
 package com.robin.lazy.sample;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private long lastTime;
     private TextView textView;
-    private PtrFrameLayout mPtrFrame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,44 +29,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.buttonLoad).setOnClickListener(this);
         findViewById(R.id.buttonClear).setOnClickListener(this);
         textView=(TextView)findViewById(R.id.textView);
-        mPtrFrame=(PtrFrameLayout)view;
-        // the following are default settings
-        mPtrFrame.setResistance(1.7f);
-        mPtrFrame.setRatioOfHeaderHeightToRefresh(1.2f);
-        mPtrFrame.setDurationToClose(200);
-        mPtrFrame.setDurationToCloseHeader(1000);
-// default is false
-        mPtrFrame.setPullToRefresh(false);
-// default is true
-        mPtrFrame.setKeepHeaderWhenRefresh(true);
-        // header
-        final StoreHouseHeader header = new StoreHouseHeader(this);
-        header.setPadding(0, PtrLocalDisplay.dp2px(15), 0, 0);
-
-/**
- * using a string, support: A-Z 0-9 - .
- * you can add more letters by {@link in.srain.cube.views.ptr.header.StoreHousePath#addChar}
- */
-        header.initWithString("Alibaba");
-        mPtrFrame.setHeaderView(header);
-        mPtrFrame.setPtrHandler(new PtrHandler() {
-            @Override
-            public void onRefreshBegin(PtrFrameLayout frame) {
-                frame.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mPtrFrame.refreshComplete();
-                    }
-                }, 1800);
-            }
-
-            @Override
-            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-                // 默认实现，根据实际情况做改动
-                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
-            }
-        });
-
     }
 
     @Override
@@ -85,8 +46,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         public void run() {
                             String area_strs = FileUtil.readAssets(MainActivity.this, "province.json");
                             lastTime = System.currentTimeMillis();
-                            CacheLoaderManager.getInstance().saveString("area_strs", area_strs, 5);
-                            CacheLoaderManager.getInstance().saveString("area_strs1", area_strs, 5);
+                            CacheLoaderManager.getInstance().saveString("area_strs", area_strs, 0);
+                            CacheLoaderManager.getInstance().saveString("area_strs1", area_strs, 0);
                             textView.setText("保存数据用时:"+(System.currentTimeMillis() - lastTime) + "毫秒");
                         }
                     });
@@ -96,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             lastTime = System.currentTimeMillis();
             String area_strs=CacheLoaderManager.getInstance().loadString("area_strs");
             if(TextUtils.isEmpty(area_strs)){
-                area_strs=CacheLoaderManager.getInstance().loadString("area_strs1");
+                area_strs+=CacheLoaderManager.getInstance().loadString("area_strs1");
             }
             Toast.makeText(MainActivity.this, "加载数据用时:" + (System.currentTimeMillis() - lastTime) + "毫秒", Toast.LENGTH_SHORT).show();
             textView.setText(area_strs);

@@ -43,7 +43,7 @@ public class LimitedAgeMemoryCache implements MemoryCache {
 
 	private final MemoryCache cache;
 
-	/**缓存数据最大保存时间(单位秒)*/
+	/**缓存数据最大保存时间(单位秒,小于等于0时代表长期有效)*/
 	private final long maxAge;
 	private final Map<String, LimitedAge> loadingDates = Collections
 			.synchronizedMap(new HashMap<String, LimitedAge>());
