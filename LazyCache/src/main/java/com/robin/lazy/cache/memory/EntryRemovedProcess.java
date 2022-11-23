@@ -35,6 +35,6 @@ public class EntryRemovedProcess<V> {
 	public void entryRemoved(boolean evicted, String key, V oldValue,
 			V newValue) {
 		oldValue = null;
-	};
+	}
 }
 

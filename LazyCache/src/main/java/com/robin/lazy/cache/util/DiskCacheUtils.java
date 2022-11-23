@@ -84,7 +84,7 @@ public final class DiskCacheUtils {
 	 */
 	private static File createReserveDiskCacheDir(Context context) {
 		File cacheDir = StorageUtils.getCacheDirectory(context, false);
-		File individualDir = new File(cacheDir, "uil-cache");
+		File individualDir = new File(cacheDir, "lazy-cache");
 		if (individualDir.exists() || individualDir.mkdir()) {
 			cacheDir = individualDir;
 		}

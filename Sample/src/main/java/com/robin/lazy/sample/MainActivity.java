@@ -56,13 +56,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (id == R.id.buttonLoad) {
             lastTime = System.currentTimeMillis();
             String area_strs=CacheLoaderManager.getInstance().loadString("area_strs");
-            if(TextUtils.isEmpty(area_strs)){
-                area_strs+=CacheLoaderManager.getInstance().loadString("area_strs1");
-            }
+            area_strs=area_strs+"\n\n"+CacheLoaderManager.getInstance().loadString("area_strs1");
             Toast.makeText(MainActivity.this, "加载数据用时:" + (System.currentTimeMillis() - lastTime) + "毫秒", Toast.LENGTH_SHORT).show();
             textView.setText(area_strs);
         }else if(id==R.id.buttonClear){
             CacheLoaderManager.getInstance().clear();
+            textView.setText(null);
         }
     }
 }
