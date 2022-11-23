@@ -51,7 +51,7 @@ public class CacheLoaderManager {
 	private CacheLoaderConfiguration cacheLoaderConfiguration;
 
 	/** 基础的缓存加载任务 */
-	private LoadCacheTask cacheTask;
+	protected LoadCacheTask cacheTask;
 
 	/** Returns singleton class instance */
 	public static CacheLoaderManager getInstance() {
@@ -195,7 +195,7 @@ public class CacheLoaderManager {
 	 * save bytes到缓存
 	 * @param key
 	 * @param value
-	 * @param maxLimitTime 缓存期限(单位分钟,为0表示永久)
+	 * @param maxLimitTime 缓存期限(单位分钟,小于等于0表示永久)
 	 * @return
 	 * boolean
 	 * @throws
@@ -212,7 +212,7 @@ public class CacheLoaderManager {
 	 * save Bitmap到缓存
 	 * @param key
 	 * @param value
-	 * @param maxLimitTime 缓存期限(单位分钟,为0表示永久)
+	 * @param maxLimitTime 缓存期限(单位分钟,小于等于0表示永久)
 	 * @param isRecycle 使用玩是否释放回收
 	 * @return
 	 * boolean
@@ -230,7 +230,7 @@ public class CacheLoaderManager {
 	 * save String到缓存
 	 * @param key
 	 * @param value 要缓存的值
-	 * @param maxLimitTime 缓存期限(单位分钟,为0表示永久)
+	 * @param maxLimitTime 缓存期限(单位分钟,小于等于0表示永久)
 	 * @return 是否保存成功
 	 * boolean
 	 * @throws
@@ -248,7 +248,7 @@ public class CacheLoaderManager {
 	 * @param <V>
 	 * @param key
 	 * @param values
-	 * @param maxLimitTime 缓存期限(单位分钟,为0表示永久)
+	 * @param maxLimitTime 缓存期限(单位分钟,小于等于0表示永久)
 	 * @return
 	 * boolean
 	 * @throws
@@ -266,7 +266,7 @@ public class CacheLoaderManager {
      * @param key
      * @param values
      * @param listener 进度监听器
-     * @param maxLimitTime 缓存期限(单位分钟,为0表示永久)
+     * @param maxLimitTime 缓存期限(单位分钟,小于等于0表示永久)
      * @return
      */
 	public boolean saveInputStream(String key,InputStream values,IoUtils.CopyListener listener,long maxLimitTime){
@@ -276,6 +276,7 @@ public class CacheLoaderManager {
                 new InputStreamWriteInDisk(listener));
 		return cacheTask.insert(key, cachePutEntity, values, maxLimitTime * 60);
 	}
+
 
 	/***
 	 * 删除一条缓存数据
