@@ -2,17 +2,16 @@
 
 buildscript {
     repositories {
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         google()
         jcenter()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.1'
+        classpath "com.android.tools.build:gradle:7.2.1"
         //自动上传至Bintray平台插件
 //        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
-        //自动化maven打包插件
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -21,9 +20,9 @@ buildscript {
 
 allprojects {
     repositories {
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-        maven { url "https://jitpack.io" }
         google()
         jcenter()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
     }
 }
